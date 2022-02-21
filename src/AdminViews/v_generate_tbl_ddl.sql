@@ -209,6 +209,7 @@ FROM pg_namespace AS n
   WHERE c.relkind = 'r'
     AND a.attisdistkey IS TRUE
     AND a.attnum > 0
+    AND a.reldiststyle == 1
   --SORTKEY COLUMNS
   UNION select table_id,schemaname, tablename, seq,
        case when min_sort <0 then 'INTERLEAVED SORTKEY (' else ' SORTKEY (' end as ddl
